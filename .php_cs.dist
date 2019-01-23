@@ -1,0 +1,165 @@
+<?php
+
+$finder = PhpCsFixer\Finder::create()
+	->in('src/');
+
+return PhpCsFixer\Config::create()
+	->setRiskyAllowed(true)
+	->setIndent("\t")
+	->setLineEnding(PHP_EOL)
+	->setRules([
+		'@PSR2' => true, // enabled by default
+		'@Symfony' => true, // use Symfony code fixing rules
+
+		// Each line of multi-line DocComments must have an asterisk [PSR-5] and must be aligned with the first one.
+		'align_multiline_comment' => [
+			// whether to fix PHPDoc comments only, any multi-line comment whose lines all start with an asterisk or any multi-line comment
+			'comment_type' => 'all_multiline',
+		],
+
+		// Each element of an array must be indented exactly once.
+		'array_indentation' => true,
+
+		// PHP arrays should be declared using the configured syntax.
+		'array_syntax' => [
+			// whether to use the long or short array syntax
+			'syntax' => 'short',
+		],
+
+		// Using isset($var) && multiple times should be done in one call.
+		'combine_consecutive_issets' => true,
+
+		// Calling unset on multiple items should be done in one call.
+		'combine_consecutive_unsets' => true,
+
+		// Comments with annotation should be docblock when used on structural elements.
+		'comment_to_phpdoc' => true,
+
+		// Remove extra spaces in a nullable typehint.
+		'compact_nullable_typehint' => true,
+
+		// Add, replace or remove header comment.
+//		'header_comment' => [
+//			// comment syntax type
+//			'comment_type' => 'PHPDoc',
+//			// proper header content
+//			'header' => file_get_contents('LICENSE_HEADER'),
+//			// the location of the inserted header
+//			'location' => 'after_open',
+//			// whether the header should be separated from the file content with a new line
+//			'separate' => 'both',
+//		],
+
+		// Ensure there is no code on the same line as the PHP open tag.
+		'linebreak_after_opening_tag' => true,
+
+		// Method chaining MUST be properly indented. Method chaining with different levels of indentation is not supported.
+		'method_chaining_indentation' => true,
+
+		// DocBlocks must start with two asterisks, multiline comments must start with a single asterisk, after the opening slash. Both must end with a single asterisk before the closing slash.
+		'multiline_comment_opening_closing' => true,
+
+		// Forbid multi-line whitespace before the closing semicolon or move the semicolon to the new line for chained calls.
+		'multiline_whitespace_before_semicolons' => [
+			// forbid multi-line whitespace or move the semicolon to the new line for chained calls
+			'strategy' => 'new_line_for_chained_calls',
+		],
+
+		// Add leading \ before function invocation to speed up resolving.
+		'native_function_invocation' => [
+			// list of functions to ignore
+			'exclude' => [
+			],
+			// list of function names or sets to fix
+			'include' => [
+				'@internal', // all native functions
+			],
+			// only fix function calls that are made within a namespace or fix all
+			'scope' => 'all',
+		],
+
+		// Replace control structure alternative syntax to use braces.
+		'no_alternative_syntax' => true,
+
+		// Properties MUST not be explicitly initialized with null.
+		'no_null_property_initialization' => true,
+
+		// In function arguments there must not be arguments with default values before non-default ones.
+		'no_unreachable_default_argument_value' => true,
+
+		// There should not be useless else cases.
+		'no_useless_else' => true,
+
+		// Replace control structure alternative syntax to use braces.
+		'no_useless_return' => true,
+
+		// Orders the elements of classes/interfaces/traits.
+		'ordered_class_elements' => [
+			// list of strings defining order of elements
+			'order' => [
+				'use_trait', // traits
+
+				'constant_public', // constants
+				'constant_protected',
+				'constant_private',
+
+				'property_public_static', // static properties
+				'property_protected_static',
+				'property_private_static',
+
+				'property_public', // properties
+				'property_protected',
+				'property_private',
+
+				'construct', // magic methods
+				'destruct',
+				'magic',
+
+				'method_public_static', // static methods
+				'method_protected_static',
+				'method_private_static',
+
+				'method_public', // methods
+				'method_protected',
+				'method_private',
+
+				'phpunit', // PHPUnit
+			],
+			// how multiple occurrences of same type statements should be sorted
+			'sortAlgorithm' => 'alpha',
+		],
+
+		// Ordering use statements.
+		'ordered_imports' => [
+			// defines the order of import types
+			'imports_order' => null,
+			// whether the statements should be sorted alphabetically or by length, or not sorted;
+			'sort_algorithm' => 'alpha',
+		],
+
+		// PHPDoc should contain @param for all params.
+		'phpdoc_add_missing_param_annotation' => [
+			// whether to add missing @param annotations for untyped parameters only
+			'only_untyped' => false,
+		],
+
+		// Annotations in PHPDoc should be ordered so that @param annotations come first, then @throws annotations, then @return annotations.
+		'phpdoc_order' => true,
+
+		// Removes extra blank lines after summary and after description in PHPDoc.
+		'phpdoc_trim_consecutive_blank_line_separation' => true,
+
+		// Sorts PHPDoc types.
+		'phpdoc_types_order' => [
+			// forces the position of null (overrides sort_algorithm);
+			'null_adjustment' => 'always_first',
+		],
+
+		// Local, dynamic and directly referenced variables should not be assigned and directly returned by a function or method.
+		'return_assignment' => true,
+
+		// A return statement wishing to return void should not return null.
+		'simplified_null_return' => true,
+	])
+	->setFinder($finder)
+;
