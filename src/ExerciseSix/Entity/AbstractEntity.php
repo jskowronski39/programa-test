@@ -6,7 +6,7 @@ use Doctrine\ORM\Mapping\Column;
 use Doctrine\ORM\Mapping\GeneratedValue;
 use Doctrine\ORM\Mapping\Id;
 
-class AbstractEntity
+abstract class AbstractEntity
 {
 	/**
 	 * @Column(type="string", length=255, nullable=true)
