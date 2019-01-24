@@ -1,0 +1,14 @@
+{% macro recursiveMenu(menuEntry) %}
+	{% import _self as self %}
+	<li>
+		<a href="">{{ menuEntry.label }}</a>
+
+		{% if menuEntry.children|length %}
+			<ul>
+				{% for child in menuEntry.children %}
+					{{ self.recursiveMenu(child) }}
+				{% endfor %}
+			</ul>
+		{% endif %}
+	</li>
+{% endmacro %}

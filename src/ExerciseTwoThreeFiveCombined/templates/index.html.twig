@@ -1,0 +1,54 @@
+{% extends "base.html.twig" %}
+
+{% block main %}
+	<div class="container-fluid">
+		<form data-validation-form>
+			<div class="form-group col-md-12">
+				<label for="name">Imię</label>
+				<input type="text" class="form-control" id="name" data-validation-required>
+				<div class="invalid-feedback" data-validation-required>
+					Należy podać imię!
+				</div>
+			</div>
+			<div class="form-group col-md-12">
+				<label for="lastName">Nazwisko</label>
+				<input type="text" class="form-control" id="lastName" data-validation-required>
+				<div class="invalid-feedback" data-validation-required>
+					Należy podać nazwisko!
+				</div>
+			</div>
+			<div class="form-group col-md-12">
+				<label for="age">Wiek</label>
+				<input type="number" class="form-control" id="age" data-validation-number-between data-validation-value-min="18" data-validation-value-max="99">
+				<div class="invalid-feedback" data-validation-number-between>
+					Dopuszczalny wiek w granicach od Wiek 18 do 99 lat!
+				</div>
+			</div>
+			<div class="form-group col-md-12">
+				<label for="sex">Płeć</label>
+				<select class="form-control" id="sex" data-validation-required>
+					<option></option>
+					<option>Kobieta</option>
+					<option>Mężczyzna</option>
+				</select>
+				<div class="invalid-feedback" data-validation-required>
+					Należy podać płeć!
+				</div>
+			</div>
+			<div class="form-group col-md-12">
+				<div class="form-check">
+					<input class="form-check-input" type="checkbox" value="" id="terms" data-validation-checked>
+					<label class="form-check-label" for="terms">
+						Wyrażam zgodę na przetwarzanie danych osobowych (...)
+					</label>
+				</div>
+				<div class="invalid-feedback" data-validation-checked>
+					Należy wyrazić zgodę na przetwarzanie danych!
+				</div>
+			</div>
+			<div class="col-md-12">
+				<button class="btn btn-primary" type="submit">Wyślij</button>
+			</div>
+		</form>
+	</div>
+{% endblock %}
